@@ -11,9 +11,11 @@ def random_string(prefix, maxlen):
 
 def test_add_project(app):
     project = Project(name=random_string("p", 10))
-    old_projects = app.project.get_project_list()
+    #old_projects = app.project.get_project_list()
+    old_projects = app.soap.get_projects_list_administrator()
     app.project.create_project(project)
-    new_projects = app.project.get_project_list()
+    #new_projects = app.project.get_project_list()
+    new_projects = app.soap.get_projects_list_administrator()
     old_projects.append(project)
     assert sorted(old_projects, key=lambda x:x.name) == sorted(new_projects, key=lambda x:x.name)
 
