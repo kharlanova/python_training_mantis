@@ -33,7 +33,7 @@ def app(request,config):
     browser = request.config.getoption("--browser")
     webadmin = config['webadmin']
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser = browser, base_url = config['web']['baseUrl'])
+        fixture = Application(browser = browser, config=config)
 
     fixture.session.ensure_login(username=webadmin['username'], password=webadmin['password'])
     return fixture
@@ -47,6 +47,7 @@ def configure_server(request, config):
         restore_server_configuration(config["ftp"]["host"], config["ftp"]["username"],
                                  config["ftp"]["password"])
     request.addfinalizer(fin)
+
 
 def install_server_configuration(host, username, password):
     with ftputil.FTPHost(host, username, password) as remote:

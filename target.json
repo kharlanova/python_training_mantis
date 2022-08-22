@@ -10,5 +10,10 @@
   "host": "localhost",
   "username": "mantis",
   "password": "mantis"
-  }
+  },
+    "soap": {
+      "host": "http://localhost/mantisbt-2.25.4/api/soap/mantisconnect.php?wsdl",
+      "username": "administrator",
+      "password": "root"
+    }
 }
